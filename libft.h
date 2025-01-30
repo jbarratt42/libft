@@ -6,13 +6,18 @@
 /*   By: jbarratt <jbarratt@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:48:19 by jbarratt          #+#    #+#             */
-/*   Updated: 2025/01/30 10:07:02 by jbarratt         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:24:42 by jbarratt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <unistd.h>
+# include <stdlib.h>
+# include <stddef.h>
+# include <stdarg.h>
+# include <limits.h>
 # include <stddef.h>
 
 typedef struct s_list
@@ -86,5 +91,19 @@ void	shift_left(t_node *n, size_t width);
 ssize_t	create_list(t_node **head, int fd);
 t_node	*consume_list(t_node *head, char *str);
 void	free_node(t_node **n);
+
+size_t	ft_strlen(const char *s);
+int		ft_dprintf_char(int fd, char c);
+int		ft_dprintf_str(int fd, char *s);
+int		ft_dprintf_base(int fd, unsigned long n, size_t len, char *base);
+int		ft_dprintf_unsigned_int(int fd, unsigned long n);
+int		ft_dprintf_int(int fd, int n);
+int		ft_dprintf_hex(int fd, unsigned long n, int is_upper);
+int		ft_dprintf_ptr(int fd, void *p);
+int		ft_dprintf_padded_int(int fd, int n, size_t width, char pad);
+int		ft_dprintf_double(int fd, double x, size_t prec);
+int		ft_dprintf_arg(int fd, va_list args, char **c);
+int		ft_vdprintf(int fd, const char *format, va_list args);
+int		ft_printf(const char *format, ...);
 
 #endif

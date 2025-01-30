@@ -6,7 +6,7 @@
 #    By: jbarratt <jbarratt@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 09:15:50 by jbarratt          #+#    #+#              #
-#    Updated: 2024/11/21 15:14:16 by jbarratt         ###   ########.fr        #
+#    Updated: 2025/01/30 10:27:27 by jbarratt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,8 @@ FILES =		ft_atoi \
 			ft_strtrim \
 			ft_substr \
 			ft_tolower \
-			ft_toupper
-
-FILES_B = 	ft_lstnew \
+			ft_toupper \
+			ft_lstnew \
 	  		ft_lstadd_front \
 	  		ft_lstsize \
 	  		ft_lstlast \
@@ -62,15 +61,20 @@ FILES_B = 	ft_lstnew \
 	  		ft_lstdelone \
 	  		ft_lstclear \
 	  		ft_lstiter \
-	  		ft_lstmap
+	  		ft_lstmap \
+			get_next_line \
+			get_next_line_utils \
+			ft_dprintf_double \
+			ft_dprintf_hex \
+			ft_dprintf_int \
+			ft_dprintf_str \
+			ft_printf
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
-SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES_B)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
-OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES_B)))
 
 all: $(NAME)
 
@@ -80,11 +84,8 @@ $(NAME): $(OBJS)
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: $(NAME) $(OBJS_B)
-	$(AR) $(NAME) $(OBJS_B)
-
 clean:
-	$(RM) $(OBJS) $(OBJS_B)
+	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -94,7 +95,4 @@ re: clean all
 list:
 	@echo $(FILES)
 
-listb:
-	@echo $(FILES_B)
-
-.PHONY: bonus all clean fclean re
+.PHONY: bonus all clean fclean re list
